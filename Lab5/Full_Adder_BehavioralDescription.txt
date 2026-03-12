@@ -1,0 +1,27 @@
+module Lab5(a, b, c_in, sum, c_out);
+input a, b, c_in;
+output sum, c_out;
+reg w1, w2, w3;
+
+Half_Adder M1 (a, b, w1, w2);
+Half_Adder M2 (c_in, w1, sum, w3);
+
+always@*
+	begin
+		c_out = w2 | w3;
+	end
+	
+endmodule
+
+module Half_Adder(a, b, sum, c_out);
+input a, b;
+output sum, c_out;
+reg sum, c_out;
+
+always@*
+	begin
+		sum = a ^ b;
+		c_out = a & b;
+	end
+	
+endmodule

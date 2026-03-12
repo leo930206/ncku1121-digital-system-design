@@ -1,0 +1,52 @@
+module sequential_circuit(clk, reset, updown, out);
+    input clk, reset, updown;
+  reg [31:0] count;
+  reg [3:0] Output_clk;
+  output reg [6:0] out;
+  
+always@(posedge clk or negedge reset)
+begin
+ if(!reset)
+ begin
+  count <= 32'd0;
+  Output_clk <= 4'd0;
+  out = 7'b1000000;
+ end
+ else
+ begin
+  if(count == 32'd50000000)
+  begin
+   count <= 32'd0;
+   if(updown)
+   begin
+    Output_clk <= Output_clk + 4'd1;
+   end
+   else
+   begin
+    Output_clk <= Output_clk - 4'd1;
+   end
+  end
+  else
+  begin
+   count <= count + 32'd1;
+  end
+  if(Output_clk == 0) out = 7'b1000000;
+  else if(Output_clk == 1) out = 7'b1111001;
+  else if(Output_clk == 2) out = 7'b0100100;
+  else if(Output_clk == 3) out = 7'b0110000;
+  else if(Output_clk == 4) out = 7'b0011001;
+  else if(Output_clk == 5) out = 7'b0010010;
+  else if(Output_clk == 6) out = 7'b0000010;
+  else if(Output_clk == 7) out = 7'b1111000;
+  else if(Output_clk == 8) out = 7'b0000000;
+  else if(Output_clk == 9) out = 7'b0010000;
+  else if(Output_clk == 10) out = 7'b0001000;
+  else if(Output_clk == 11) out = 7'b0000011;
+  else if(Output_clk == 12) out = 7'b1000110;
+  else if(Output_clk == 13) out = 7'b0100001;
+  else if(Output_clk == 14) out = 7'b0000110;
+  else out = 7'b0001110;
+ end
+end
+
+endmodule

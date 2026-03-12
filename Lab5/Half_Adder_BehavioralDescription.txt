@@ -1,0 +1,12 @@
+module Lab5(a, b, sum, c_out);
+input a, b;
+output sum, c_out;
+reg sum, c_out;
+
+always @(a, b)
+begin
+ sum = a ^ b;
+ c_out = a & b;
+end
+
+endmodule

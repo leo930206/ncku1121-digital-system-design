@@ -1,0 +1,25 @@
+module Lab6(in, out);
+
+  input [7:0]in;
+  output [2:0]out;
+
+  reg [2:0] encoded;
+
+  always @* 
+  begin
+    case (in)
+      8'b00000001: encoded = 3'b000;
+      8'b00000010: encoded = 3'b001;
+      8'b00000100: encoded = 3'b010;
+      8'b00001000: encoded = 3'b011;
+      8'b00010000: encoded = 3'b100;
+      8'b00100000: encoded = 3'b101;
+      8'b01000000: encoded = 3'b110;
+      8'b10000000: encoded = 3'b111;
+      default: encoded = 3'b000;
+    endcase
+  end
+
+  assign out = encoded;
+
+endmodule
